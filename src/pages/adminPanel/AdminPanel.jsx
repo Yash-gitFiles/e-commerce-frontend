@@ -1,12 +1,12 @@
+
+
 import React from "react";
 import styles from "../../styles/pages/adminPanel/adminPanel.module.css";
 import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 
 function AdminPanel() {
-  const user = useSelector((store) => {
-    return store.userSlices.user;
-  });
+  const user = useSelector((store) => store.userSlices.user);
 
   if (!user) return null;
 
@@ -18,12 +18,11 @@ function AdminPanel() {
           <p>{user.name}</p>
         </div>
         <div className={styles.productsAndUser}>
-          <Link to="allProducts">All products</Link>
-          <Link to="allUsers">All Users</Link>
+          <Link to="/adminPanel/allProducts">All products</Link>
+          <Link to="/adminPanel/allUsers">All Users</Link>
         </div>
       </aside>
       <main>
-        main
         <Outlet />
       </main>
     </div>

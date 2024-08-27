@@ -12,6 +12,7 @@ import AdminRoute from "./pages/adminPanel/AdminRoute.jsx";
 import AdminPanel from "./pages/adminPanel/AdminPanel.jsx";
 import AllProducts from "./pages/adminPanel/AllProducts.jsx";
 import AllUsers from "./pages/adminPanel/AllUsers.jsx";
+import AdminHome from "./pages/adminPanel/AdminHome.jsx";
 
 function App() {
   return (
@@ -20,10 +21,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="login" element={<Login />} />
             <Route
-              path="/profile"
+              path="profile"
               element={
                 <ProtectedRoute>
                   <UserProfile />
@@ -31,37 +32,13 @@ function App() {
               }
             />
 
-            {/* admin panel */}
-            <Route
-              path="/adminPanel"
-              element={
-                <AdminRoute>
-                  <AdminPanel />
-                </AdminRoute>
-              }
-            />
-
-            {/* all products */}
-
-            <Route
-              path="adminPanel/allProducts"
-              element={
-                <AdminRoute>
-                  <AllProducts />
-                </AdminRoute>
-              }
-            />
-
-            {/* allUsers */}
-
-            <Route
-              path="adminPanel/allUsers"
-              element={
-                <AdminRoute>
-                  <AllUsers />
-                </AdminRoute>
-              }
-            />
+            <Route element={<AdminRoute />}>
+              <Route path="adminPanel" element={<AdminPanel />}>
+                <Route index element={<AdminHome />} />
+                <Route path="allUsers" element={<AllUsers />} />
+                <Route path="allProducts" element={<AllProducts />} />
+              </Route>
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

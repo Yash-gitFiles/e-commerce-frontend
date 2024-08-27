@@ -1,15 +1,19 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
-const AdminRoute = ({ children }) => {
+
+import React from "react";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
+
+function AdminRoute() {
   const user = useSelector((state) => state.userSlices.user);
 
-  if (!user || user.role === "user") {
-    return <Navigate to="/" />;
+  console.log("AdminRoute reached", user);
+
+  if (!user || user.role !== "admin") {
+    return <Navigate to="/login" replace />;
   }
 
-  return children;
-};
+  return <Outlet />;
+}
 
 export default AdminRoute;
