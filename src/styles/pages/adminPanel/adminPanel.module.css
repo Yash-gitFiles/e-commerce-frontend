@@ -1,0 +1,32 @@
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  height: 100vh;
+}
+
+.container aside {
+  background-color: rgb(214, 182, 182);
+  height: 100%;
+}
+
+.container aside .userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 0px;
+}
+
+.container aside .userInfo img {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+.container aside .productsAndUser{
+  display: flex;
+  padding: 0px 16px;
+  flex-direction: column;
+}

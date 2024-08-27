@@ -33,8 +33,6 @@ function Login() {
         }
       );
 
-      console.log(response.data.data.userData);
-
       dispatch(setUserDetails(response.data.data.userData));
       navigate("/");
     } catch (error) {

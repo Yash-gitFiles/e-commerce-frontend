@@ -21,7 +21,6 @@ function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    console.log("userData", userData);
     try {
       const response = await axios.post(
         "http://localhost:8000/signup",

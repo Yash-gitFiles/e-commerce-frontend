@@ -84,7 +84,7 @@ function Navbar() {
                 {profile && (
                   <div className={styles.dropDown}>
                     {user?.role === "admin" && (
-                      <Link to="/admin">Admin Panel</Link>
+                      <Link to="/adminPanel">Admin Panel</Link>
                     )}
                     <Link to="/profile">Profile</Link>
                     <button onClick={handleLogout}>Logout</button>
