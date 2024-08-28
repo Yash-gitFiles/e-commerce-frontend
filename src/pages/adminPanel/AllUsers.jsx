@@ -100,6 +100,7 @@ function AllUsers() {
 
       {isModalOpen && selectedUser && (
         <Modal
+          type="admin"
           user={selectedUser}
           onClose={closeModal}
           onSave={handleSaveUser}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../styles/common/modal.module.css";
 
-function Modal({ user, onClose, onSave }) {
+function Modal({ type, onClose, onSave, user }) {
   const [formData, setFormData] = useState({ ...user });
   const [loading, setLoading] = useState(false);
 
@@ -26,49 +26,112 @@ function Modal({ user, onClose, onSave }) {
     }
   };
 
+  const renderContent = () => {
+    switch (type) {
+      case "user":
+        return (
+          <form onSubmit={handleSubmit}>
+            <label>
+              Name:
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              Email:
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              Password (leave empty to keep unchanged):
+              <input type="password" name="password" onChange={handleChange} />
+            </label>
+            <div className={styles.modalActions}>
+              <button type="button" onClick={onClose} disabled={loading}>
+                Cancel
+              </button>
+              <button type="submit" disabled={loading}>
+                {loading ? "Saving..." : "Save"}
+              </button>
+            </div>
+          </form>
+        );
+      case "admin":
+        return (
+          <div>
+            <form onSubmit={handleSubmit}>
+              <label>
+                User Name:
+                <input
+                  type="text"
+                  name="userName"
+                  value={formData.adminName}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                Email:
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                Role:
+                <select
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                >
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+                </select>
+              </label>
+              <label>
+                Password (leave empty to keep unchanged):
+                <input
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                />
+              </label>
+              <div className={styles.modalActions}>
+                <button type="button" onClick={onClose} disabled={loading}>
+                  Cancel
+                </button>
+                <button type="submit" disabled={loading}>
+                  {loading ? "Saving..." : "Save"}
+                </button>
+              </div>
+            </form>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };  
+
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
-          <h2>Edit User Profile</h2>
+          <h2>{type === "user" ? "Edit User Profile" : "Admin Modal"}</h2>
           <button className={styles.closeButton} onClick={onClose}>
             &times;
           </button>
         </div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Password (leave empty to keep unchanged):
-            <input type="password" name="password" onChange={handleChange} />
-          </label>
-          <div className={styles.modalActions}>
-            <button type="button" onClick={onClose} disabled={loading}>
-              Cancel
-            </button>
-            <button type="submit" disabled={loading}>
-              {loading ? "Saving..." : "Save"}
-            </button>
-          </div>
-        </form>
+        {renderContent()}
       </div>
     </div>
   );
