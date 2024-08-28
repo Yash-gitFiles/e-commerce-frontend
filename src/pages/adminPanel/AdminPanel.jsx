@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import styles from "../../styles/pages/adminPanel/adminPanel.module.css";
 import { useSelector } from "react-redux";
@@ -20,6 +18,7 @@ function AdminPanel() {
         <div className={styles.productsAndUser}>
           <Link to="/adminPanel/allProducts">All products</Link>
           <Link to="/adminPanel/allUsers">All Users</Link>
+          <Link to="/adminPanel/allCategory">All Category</Link>
         </div>
       </aside>
       <main>

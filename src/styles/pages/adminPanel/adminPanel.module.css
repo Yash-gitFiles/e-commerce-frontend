@@ -24,9 +24,12 @@
   border-radius: 50%;
 }
 
-
-.container aside .productsAndUser{
+.container aside .productsAndUser {
   display: flex;
   padding: 0px 16px;
   flex-direction: column;
+}
+
+.container main {
+  margin-top: 24px;
 }

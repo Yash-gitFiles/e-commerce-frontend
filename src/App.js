@@ -10,9 +10,12 @@ import UserProfile from "./pages/UserProfile";
 import { store } from "./redux/store";
 import AdminRoute from "./pages/adminPanel/AdminRoute.jsx";
 import AdminPanel from "./pages/adminPanel/AdminPanel.jsx";
-import AllProducts from "./pages/adminPanel/AllProducts.jsx";
-import AllUsers from "./pages/adminPanel/AllUsers.jsx";
+import AllProducts from "./pages/adminPanel/allProducts/AllProducts.jsx";
+import AllUsers from "./pages/adminPanel/allUsers/AllUsers.jsx";
 import AdminHome from "./pages/adminPanel/AdminHome.jsx";
+
+import AllCategory from "./pages/adminPanel/category/AllCategory.jsx";
+import AddNewUser from "./pages/adminPanel/allUsers/AddNewUser.jsx";
 
 function App() {
   return (
@@ -36,7 +39,9 @@ function App() {
               <Route path="adminPanel" element={<AdminPanel />}>
                 <Route index element={<AdminHome />} />
                 <Route path="allUsers" element={<AllUsers />} />
+                <Route path="allUsers/addNewUser" element={<AddNewUser />} />
                 <Route path="allProducts" element={<AllProducts />} />
+                <Route path="allCategory" element={<AllCategory />} />
               </Route>
             </Route>
           </Route>

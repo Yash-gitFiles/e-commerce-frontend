@@ -1,8 +1,9 @@
 import axios from "axios";
-import styles from "../../styles/pages/adminPanel/allUsers.module.css";
+import styles from "../../../styles/pages/adminPanel/allUsers/allUsers.module.css";
 import React, { useCallback, useEffect, useState } from "react";
-import Modal from "../../components/common/Modal";
-import { formatDateToDDMMYYYY, getName } from "../../helper/eCommerce";
+import Modal from "../../../components/common/Modal";
+import { formatDateToDDMMYYYY, getName } from "../../../helper/eCommerce";
+import { Link } from "react-router-dom";
 
 function AllUsers() {
   const [allUsers, setAllUsers] = useState([]);
@@ -73,6 +74,10 @@ function AllUsers() {
 
   return (
     <div className={styles.container}>
+      <button>
+        <Link to="addNewUser">+ Add User</Link>
+      </button>
+
       <table className={styles.table}>
         <thead>
           <tr>

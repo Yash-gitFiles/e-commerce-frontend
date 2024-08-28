@@ -1,0 +1,112 @@
+/* Scoped container styling */
+.allCategoryContainer {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Scoped title styling */
+.allCategoryTitle {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Scoped button styling */
+.allCategoryButton {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.allCategoryButton:hover {
+  background-color: #0056b3;
+}
+
+.allCategoryButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Scoped table styling */
+.allCategoryTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+/* Scoped table header styling */
+.allCategoryTableHeader {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #0056b3;
+}
+
+/* Scoped table cell styling */
+.allCategoryTableCell {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Scoped row hover effect */
+.allCategoryTableRow:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .allCategoryTableHeader,
+  .allCategoryTableCell {
+    padding: 10px;
+  }
+
+  .allCategoryTable {
+    font-size: 14px;
+  }
+
+  .allCategoryTitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .allCategoryTable {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .allCategoryTableHeader,
+  .allCategoryTableCell {
+    display: block;
+    text-align: right;
+    padding: 10px;
+  }
+
+  .allCategoryTableHeader::before {
+    content: "ID";
+    display: block;
+    font-weight: bold;
+  }
+
+  .allCategoryTableCell::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  /* Adjust button styling */
+  .allCategoryButton {
+    padding: 8px 12px;
+  }
+}
