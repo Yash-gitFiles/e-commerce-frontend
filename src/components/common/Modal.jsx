@@ -2,15 +2,24 @@ import React, { useState } from "react";
 import styles from "../../styles/common/modal.module.css";
 
 function Modal({ type, onClose, onSave, user }) {
-  const [formData, setFormData] = useState({ ...user });
+  const [formData, setFormData] = useState({
+    ...user,
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prevData) => {
+      if (name === "password" && value === "") {
+        const { password, ...rest } = prevData;
+        return { ...rest, [name]: value };
+      }
+      return {
+        ...prevData,
+        [name]: value,
+      };
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -36,7 +45,7 @@ function Modal({ type, onClose, onSave, user }) {
               <input
                 type="text"
                 name="name"
-                value={formData.name}
+                value={formData.name || ""}
                 onChange={handleChange}
                 required
               />
@@ -46,14 +55,19 @@ function Modal({ type, onClose, onSave, user }) {
               <input
                 type="email"
                 name="email"
-                value={formData.email}
+                value={formData.email || ""}
                 onChange={handleChange}
                 required
               />
             </label>
             <label>
               Password (leave empty to keep unchanged):
-              <input type="password" name="password" onChange={handleChange} />
+              <input
+                type="password"
+                name="password"
+                onChange={handleChange || ""}
+                value={formData.password || ""}
+              />
             </label>
             <div className={styles.modalActions}>
               <button type="button" onClick={onClose} disabled={loading}>
@@ -74,7 +88,7 @@ function Modal({ type, onClose, onSave, user }) {
                 <input
                   type="text"
                   name="userName"
-                  value={formData.adminName}
+                  value={formData.userName || ""}
                   onChange={handleChange}
                 />
               </label>
@@ -83,7 +97,7 @@ function Modal({ type, onClose, onSave, user }) {
                 <input
                   type="email"
                   name="email"
-                  value={formData.email}
+                  value={formData.email || ""}
                   onChange={handleChange}
                 />
               </label>
@@ -91,7 +105,7 @@ function Modal({ type, onClose, onSave, user }) {
                 Role:
                 <select
                   name="role"
-                  value={formData.role}
+                  value={formData.role || ""}
                   onChange={handleChange}
                 >
                   <option value="admin">Admin</option>
@@ -120,7 +134,7 @@ function Modal({ type, onClose, onSave, user }) {
       default:
         return null;
     }
-  };  
+  };
 
   return (
     <div className={styles.modal}>

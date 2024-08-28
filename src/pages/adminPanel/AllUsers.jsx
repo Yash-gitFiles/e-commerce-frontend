@@ -2,6 +2,7 @@ import axios from "axios";
 import styles from "../../styles/pages/adminPanel/allUsers.module.css";
 import React, { useCallback, useEffect, useState } from "react";
 import Modal from "../../components/common/Modal";
+import { formatDateToDDMMYYYY, getName } from "../../helper/eCommerce";
 
 function AllUsers() {
   const [allUsers, setAllUsers] = useState([]);
@@ -47,6 +48,7 @@ function AllUsers() {
   };
 
   const handleSaveUser = async (updatedUser) => {
+    console.log("updatedUser", updatedUser);
     try {
       const response = await axios.put(
         `http://localhost:8000/admin/${selectedUser._id}`,
@@ -71,32 +73,49 @@ function AllUsers() {
 
   return (
     <div className={styles.container}>
-      {allUsers.map((user) => (
-        <div key={user._id} className={styles.card}>
-          <img src={user.userImage} alt={user.name} className={styles.image} />
-          <div className={styles.details}>
-            <h2 className={styles.name}>{user.name}</h2>
-            <p className={styles.email}>{user.email}</p>
-            <p className={styles.joinDate}>
-              Joined: {new Date(user.createdAt).toLocaleDateString()}
-            </p>
-            <div className={styles.btnCon}>
-              <button
-                className={styles.editButton}
-                onClick={() => handleUserEdit(user._id)}
-              >
-                Edit Profile
-              </button>
-              <button
-                className={styles.deleteBtn}
-                onClick={() => handleUserDelete(user._id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      ))}
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Joined</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allUsers.map((user) => (
+            <tr key={user._id}>
+              <td>
+                <img
+                  src={user.userImage}
+                  alt={user.name}
+                  className={styles.image}
+                />
+              </td>
+              <td>{getName(user.role)}</td>
+              <td>{getName(user.name)}</td>
+              <td>{user.email}</td>
+              <td>{formatDateToDDMMYYYY(new Date(user.createdAt))}</td>
+              <td>
+                <button
+                  className={styles.editButton}
+                  onClick={() => handleUserEdit(user._id)}
+                >
+                  Edit
+                </button>
+                <button
+                  className={styles.deleteBtn}
+                  onClick={() => handleUserDelete(user._id)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       {isModalOpen && selectedUser && (
         <Modal
