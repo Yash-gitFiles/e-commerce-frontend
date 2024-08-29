@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import imageToBase64 from "../helper/imageToBase64";
+import cloudinaryImages from "../helper/cloudinary";
 import styles from "../styles/pages/signUp.module.css";
 
 function SignUp() {
@@ -41,15 +41,13 @@ function SignUp() {
 
   async function handleUploadPic(e) {
     const file = e.target.files[0];
-
-    const imagePic = await imageToBase64(file);
-
-    setUserData((prev) => {
-      return {
+    if (file) {
+      const imagePic = await cloudinaryImages(file);
+      setUserData((prev) => ({
         ...prev,
-        userImage: imagePic,
-      };
-    });
+        userImage: imagePic.url,
+      }));
+    }
   }
 
   return (
@@ -57,29 +55,30 @@ function SignUp() {
       <div className={styles.formWrapper}>
         <h2>Sign Up</h2>
 
-        {/* img */}
-
+        {/* Image preview */}
         <div className={styles.imgCon}>
           <div className={styles.imgInnerCon}>
-            <img src={userData.profilePic} alt="img" />
+            {userData.userImage ? (
+              <img src={userData.userImage} alt="Profile Preview" />
+            ) : (
+              <div className={styles.imgPlaceholder}>No Image</div>
+            )}
           </div>
           <form>
             <label>
               <div className={styles.uploadPhoto}>Upload Photo</div>
               <input
                 type="file"
+                accept="image/*"
                 style={{ display: "none" }}
                 onChange={handleUploadPic}
               />
             </label>
           </form>
         </div>
-        {/* img */}
-        <form
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}
-        >
+
+        {/* Role selection */}
+        <form onSubmit={handleSubmit}>
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -87,9 +86,7 @@ function SignUp() {
             name="name"
             required
             value={userData.name}
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            onChange={handleChange}
           />
 
           <label htmlFor="email">Email</label>
@@ -99,9 +96,7 @@ function SignUp() {
             name="email"
             value={userData.email}
             required
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            onChange={handleChange}
           />
 
           <label htmlFor="password">Password</label>
@@ -111,12 +106,12 @@ function SignUp() {
             name="password"
             value={userData.password}
             required
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            onChange={handleChange}
           />
+
           <button type="submit">Sign Up</button>
         </form>
+
         <p className={styles.login}>
           <Link to="/login">Login</Link>
         </p>

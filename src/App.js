@@ -13,9 +13,10 @@ import AdminPanel from "./pages/adminPanel/AdminPanel.jsx";
 import AllProducts from "./pages/adminPanel/allProducts/AllProducts.jsx";
 import AllUsers from "./pages/adminPanel/allUsers/AllUsers.jsx";
 import AdminHome from "./pages/adminPanel/AdminHome.jsx";
-
 import AllCategory from "./pages/adminPanel/category/AllCategory.jsx";
 import AddNewUser from "./pages/adminPanel/allUsers/AddNewUser.jsx";
+import CreateSubCategory from "./pages/adminPanel/subCategory/CreateSubCategory.jsx";
+import AllSubCategory from "./pages/adminPanel/subCategory/AllSubCategory.jsx";
 
 function App() {
   return (
@@ -42,6 +43,11 @@ function App() {
                 <Route path="allUsers/addNewUser" element={<AddNewUser />} />
                 <Route path="allProducts" element={<AllProducts />} />
                 <Route path="allCategory" element={<AllCategory />} />
+                <Route path="allSubCategory" element={<AllSubCategory />} />
+                <Route
+                  path="createSubCategory"
+                  element={<CreateSubCategory />}
+                />
               </Route>
             </Route>
           </Route>

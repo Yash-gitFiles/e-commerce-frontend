@@ -72,6 +72,25 @@ function AllCategory() {
     }
   }
 
+  async function editCategory(value) {
+    const name = prompt("edit category");
+
+    try {
+      const response = await axios.put(
+        `http://localhost:8000/admin/category/${value._id}`,
+        { name },
+        {
+          withCredentials: true,
+        }
+      );
+      fetchAllCategory();
+      console.log(response.data.data.name);
+    } catch (error) {
+      console.error(error);
+      alert("edit category updating failed");
+    }
+  }
+
   if (!categories) return null;
 
   return (
@@ -100,7 +119,14 @@ function AllCategory() {
                 >
                   Delete
                 </button>
-                <button className={styles.allCategoryButton}>Edit</button>
+                <button
+                  className={styles.allCategoryButton}
+                  onClick={() => {
+                    editCategory(value);
+                  }}
+                >
+                  Edit
+                </button>
               </td>
             </tr>
           ))}

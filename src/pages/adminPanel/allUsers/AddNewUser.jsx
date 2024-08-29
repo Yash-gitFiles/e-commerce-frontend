@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import styles from "../../../styles/pages/signUp.module.css";
-import imageToBase64 from "../../../helper/imageToBase64";
+import cloudinaryImages from "../../../helper/cloudinary";
 
 function AddNewUser() {
   const [userData, setUserData] = useState({
@@ -43,12 +42,12 @@ function AddNewUser() {
   async function handleUploadPic(e) {
     const file = e.target.files[0];
 
-    const imagePic = await imageToBase64(file);
+    const imagePic = await cloudinaryImages(file);
 
     setUserData((prev) => {
       return {
         ...prev,
-        userImage: imagePic,
+        userImage: imagePic.url,
       };
     });
   }
