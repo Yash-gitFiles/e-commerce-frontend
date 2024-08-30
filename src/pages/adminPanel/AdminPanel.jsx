@@ -16,11 +16,12 @@ function AdminPanel() {
           <p>{user.name}</p>
         </div>
         <div className={styles.productsAndUser}>
-          <Link to="/adminPanel/allProducts">All products</Link>
           <Link to="/adminPanel/allUsers">All Users</Link>
           <Link to="/adminPanel/allCategory">All Category</Link>
           <Link to="/adminPanel/createSubCategory">Create Subcategory</Link>
           <Link to="/adminPanel/allSubCategory">All Subcategory</Link>
+          <Link to="/adminPanel/createProducts">Create products</Link>
+          <Link to="/adminPanel/allProducts">All products</Link>
         </div>
       </aside>
       <main>
