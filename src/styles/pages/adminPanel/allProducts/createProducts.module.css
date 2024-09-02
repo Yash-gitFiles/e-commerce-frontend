@@ -1,12 +1,16 @@
+/* createProducts.module.css */
+
 .container {
-  padding: 20px;
-  max-width: 600px;
+  width: 80%;
   margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .title {
   font-size: 24px;
-  font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
   color: #333;
@@ -15,21 +19,100 @@
 .form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15px;
 }
 
 .select {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  background-color: #fff;
-  transition: border-color 0.3s;
+  font-size: 16px;
 }
 
-.select:focus {
-  border-color: #007bff;
-  outline: none;
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.sizeOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sizeOptions label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.sizeOptions input {
+  margin-right: 5px;
+}
+
+.imgCon {
+  margin-bottom: 20px;
+}
+
+.imgInnerCon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+}
+
+.imgInnerCon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.imgPlaceholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #aaa;
+}
+
+.uploadPhoto {
+  display: inline-block;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.uploadPhoto:hover {
+  background-color: #0056b3;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #218838;
 }
